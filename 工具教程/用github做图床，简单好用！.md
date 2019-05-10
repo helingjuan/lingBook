@@ -12,3 +12,6 @@ notebook: 记录
 **步骤**：
 ![image](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/Image%2035.png)
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/Image%2036.png)
+
+### 二.上传文件到仓库
+这里有2种方式，1. 
