@@ -19,3 +19,8 @@ emmmm，之所以会开始思考这个，当然是我又双叒在写官网啦。
 说到系统网站，不得不提政府系统了，政府系统，顾名思义，会有人用XP电脑的，而且还是用自带的IE的那种。嗯 
 
 一般来说，原则就是：**尽量支持XP，最低要求支持win7，开发网站时jQuery使用1.10.X版本，**
+> If you need to support older browsers like Internet Explorer 6-8, Opera 12.1x or Safari 5.1+, use jQuery 1.12.(如果要支持旧的浏览器，比如IE6到IE8，Opera12.1X 或者Safari5.1+，你就用jQuery1.12)——官网说的
+
+
+### 参考资料
+* [browser support (jQuery官网)](http://jquery.com/browser-support/)
