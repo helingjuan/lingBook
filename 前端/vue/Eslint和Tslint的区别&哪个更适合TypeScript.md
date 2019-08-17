@@ -17,7 +17,10 @@ notebook:
 ——目前已经停止维护了
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190817110553.png)
 ### 怎么用
-- [AlloyTeam ESLint规则——github](https://github.com/AlloyTeam/eslint-config-alloy)typescript-eslint
+- [AlloyTeam ESLint规则——github](https://github.com/AlloyTeam/eslint-config-alloy)
+- typescript-eslint
+- 注意：ESLint团队宣布：`typescript-eslint-parser` 项目已经不再维护了。用这个插件的人，需要转而使用`@typescript-eslint/parser`
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190817113527.png)
 ### 参考资料
 - [ESLint中文版官网](https://cn.eslint.org)
 - [ESLint 在中大型团队的应用实践——美团技术团队](https://tech.meituan.com/2019/08/01/eslint-application-practice-in-medium-and-large-teams.html)
