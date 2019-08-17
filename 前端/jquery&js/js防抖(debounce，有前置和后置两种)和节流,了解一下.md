@@ -11,6 +11,30 @@ notebook: js
 这两种都
 
 ### 防抖
+```
+// 后置防抖
+var debounce = function(fn, time) {
+      var timeout = ''
+      return function() {
+        var self = this
+        //清除上一个定时器
+        if (timeout){
+          clearTimeout(timeout);
+        } 
+        if (!timeout){
+          fn.call(self, arguments);
+        } 
+        //创建一个新的定时器 时间间隔1s
+        timeout = setTimeout(function() {
+          timeout = ''
+        }, time);
+      }
+    }
+    var fn = debounce(addVisitorAction, 1500)
+    mm.addVisitor = function() {
+      fn()
+    }
+```
 
 ### 节流
 
