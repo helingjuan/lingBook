@@ -16,10 +16,16 @@ notebook:
 ### TSLint
 ——目前已经停止维护了。
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190817110553.png)
+
 ### 怎么用？哪个更适合TypeScript？
-- [AlloyTeam ESLint规则——github](https://github.com/AlloyTeam/eslint-config-alloy)
+#### ESLint 和 TSLint的区别
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190819113212.png)
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190819104141.png)
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190819114725.png)    
+
 - 注意：ESLint团队宣布：`typescript-eslint-parser` 项目已经不再维护了。用这个插件的人，需要转而使用`@typescript-eslint/parser`
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190817113527.png)    
+  
 ### 总结
 **要搭配TypeScript的话，就用ESLint**，然后安装`@typescript-eslint/parser`这个插件，就可以了。
 至于要怎么使用这个插件，可以看[typescript ESLint Parser官方文档(github——TypeScript ESLint)](https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/parser)    
