@@ -14,4 +14,20 @@ notebook: 记录
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/Image%2036.png)
 
 ### 二.上传文件到仓库
-这里有2种方式，1. 
+这里有2种方式，1. 拖拽方式直接上传；
+2.用git方式上传。
+
+1. 拖拽方式
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190826154634.png)
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190826154657.png)
+
+2. git方式
+   就是命令行
+   ```
+   git add --all .
+   git commit -am "remark"
+   git pull
+   git push
+   ```
+
+
