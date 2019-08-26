@@ -19,7 +19,10 @@ notebook:
   ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190826153604.png)
   ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190826120205.png)
   ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190826154233.png)
-4. 测试连接，即可    
+4. 如果是更改已有的项目，就需要这步操作，直接克隆的就可以跳过
+  ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190826165223.png)
+  ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190826165316.png)
+5. 测试连接，即可    
    `ssh -T git@github.com(配置ssh密钥的仓库域名)` 或直接`git pull`    
    
 完整流程：
