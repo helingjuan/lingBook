@@ -1,9 +1,9 @@
 ---
-title: ckeditor富文本框使用
+title: ckeditor富文本框配置
 tags: 富文本框
 notebook: 前端
 ---
-# ckeditor富文本框使用
+# ckeditor富文本框配置
 维护产品的时候，发现目前使用的富文本框是百度的，如果使用场景是很简单的那种（不用嵌入图片啊什么的），其实还是很实用的，但是遇到图片，就很麻烦了，而且让我觉得换插件最重要的原因还是：百度团队都已经不维护这个插件了，emmmm
 现在不跳，留着干嘛？？
 
@@ -39,3 +39,5 @@ config.extraPlugins = 'colorbutton'
 ```
   config.extraPlugins = 'emoji'
 ```
+
+
