@@ -20,3 +20,25 @@ var days = (dateEnd - dateStart) / (1000 * 60 * 60 * 24));
 ```
 效果：    
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190828144848.png)
+
+### 格式装换：时间戳 转换成2019/08/28
+```
+//时间戳转换
+var timeFormat = function(timeStamp) {
+  var timeStr = new Date();
+  timeStr.setTime(timeStamp *1000);
+  timeStr = timeStr.toLocaleDateString(); //输出 2018/5/17 格式
+  return timeStr;
+}
+```
+
+### 获取当天日期：格式：2019-09-09
+```
+var getDate = function() {
+    var date = new Date()
+    var yyyy = date.getFullYear()
+    var mm = (date.getMonth() +1) < 10 ? '0'+(date.getMonth() +1) : date.getMonth() +1;
+    var dd = date.getDate() < 10 ? '0' +date.getDate() : date.getDate()
+    return yyyy + '-' + mm + '-' + dd
+  }
+```

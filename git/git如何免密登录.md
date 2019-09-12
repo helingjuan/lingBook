@@ -1,7 +1,7 @@
 ---
 title: git 免密登录
 tags: git
-notebook: 
+notebook: git
 ---
 # git如何免密登录
 

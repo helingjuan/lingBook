@@ -1,7 +1,7 @@
 ---
 title: git 报错 Cannot update the ref 'ORIG_HEAD'.
-tags: 
-notebook: 
+tags: git
+notebook: git
 ---
 # git 报错 Cannot update the ref 'ORIG_HEAD'.
 Cannot update the ref 'ORIG_HEAD'.
