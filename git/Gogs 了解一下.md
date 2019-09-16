@@ -4,6 +4,7 @@ tags: git
 notebook: git
 ---
 # Gogs 了解一下
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/101836_of53_852826.png)
 这是一款类似github的开源文件/代码管理系统（基于Git）。
 这是一个管理系统，还是要和git配合使用，就是说，在使用的时候，需要安装一下git环境。
 这样之后才方便克隆及上传文件。
@@ -19,6 +20,6 @@ notebook: git
   - 这是一款极易搭建的自助Git服务，它的目标是打造一个最简单、最快速和最轻松的方式搭建自助Git服务，使用Go语言开发使得Gogs能够通过独立的二进制分发，并且支持go预约支持的所有平台，包括Linux、Mac OS X、Windows 以及ARM平台。
   - 比较适合小团队。轻便快捷。
 ### 参考资料
-- [Gogs使用介绍]()
-- [极易搭建的自助Git服务 Gogs]()
+- [Gogs使用介绍(CSDN-stormbaron)](https://blog.csdn.net/u010228448/article/details/71425551)
+- [极易搭建的自助Git服务 Gogs(OSCHINA-无闻)](https://www.oschina.net/p/gogs)
 
