@@ -1,16 +1,18 @@
 ---
-title: git 免密登录
+title: git 操作如何一键免密，从此不用一直输入账号密码
 tags: git
 notebook: git
 ---
-# git如何免密登录
-
+# git 操作如何一键免密，从此不用一直输入账号密码
+有2种方法：
+- http账号密码
+- ssh登录
 ### 一.http账号密码
 去项目的文件夹下，打开隐藏文件夹.git    
 找到config文件，右键打开     
 
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190826155750.png)
-然后就可以免密登录了，缺点就是麻烦，要一个个设置过去。
+保存，然后就可以一键免密了，缺点就是麻烦，要一个个设置过去，且这个免密是只针对这个仓库的。
 ### 二.ssh登录
 1. 生成ssh密钥    
    `ssh-keygen -t rsa -b 4096 -C "your_email@example.com"`

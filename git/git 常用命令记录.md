@@ -44,7 +44,7 @@ git log -p master.. origin/master
 git merge origin/master
 ```
 
-### 三.更新远程仓库的项目（推送）push
+### 三.更新远程仓库的项目（推送-上传代码）push
 #### 3.1 单分支(master)
 ```
 git push
@@ -54,38 +54,15 @@ git push
 git push origin dev
 语法：git push origin <branch>
 ```
-小结：**上传代码到仓库上的方法**
-常见方法（有3种）:
-1. add 并且commit，再checkout，提交到当前分支；
-2. add但不commit，可以stash，然后checkout回来之后stash apply ，再commit ，提交到当前分支
-3. add ——checkout ——commit，提交记录就在切换分支下面。
-
-**方法1：add 并且commit，再checkout，提交到当前分支**   
-介绍：   
-1. 在对应的文件夹根目录打开git bash 界面
-2. 将索要提交的文件信息（修改过和更新过的文件）添加到索引库`git add --all . `    
-3. 根据索引库的内容进行文件提交 `git commit -m "描述信息"`
-4. （如果已存在分支可以跳过这步）新建分支 git branch 分支名，如dev
-5. 查看该项目的所有分支(本地和远程)，并在当前所在分支前加*标记。`git branch -a`
-    - 只查看本地分支 `git branch`
-    - 只查看远程分支 `git branch -r`
-
-
-6. 切换本地分支 `git checkout <branch>`，如dev   
-  
-7. 将远程分支的代码pull到本地分支 `git pull origin dev:dev`
-`git pull <远程主机名> <远程分支名>:<本地分支名>`
-8. 把本地分支的代码推到远程分支中`git push origin dev:dev`
-`git push <远程主机名> <本地分支名>:<远程分支名>`
 
 ### 四.关于分支的一些操作
-#### 4.1 新建分支
+#### 4.1 新建分支 branch
 ```
 git branch 分支名，如dev
 //语法：git branch <branchName>
 ```
 
-#### 4.2 切换分支
+#### 4.2 切换分支 checkout
 ```
 git checkout 分支名，如dev
 ```
@@ -100,7 +77,7 @@ git branch
 git branch -r
 ```
 
-### 五.查看本地项目对应的远程仓库地址
+### 五.查看本地项目对应的远程仓库地址 remote
 ```
 git remote -v
 // git remote ,查看当前配置有哪些远程仓库
