@@ -42,3 +42,37 @@ var getDate = function() {
     return yyyy + '-' + mm + '-' + dd
   }
 ```
+
+### 时间累加，一秒秒加
+```
+var nowDate = ''
+    // 获取后台的时间
+    mm.apiAjax({
+      url: path.u('/index/index/getNowDate'),
+      success: function(res) {
+        nowDate = new Date(res.date_now)
+      }
+    })
+    //获取系统时间，将时间以指定格式显示到页面
+    var timer = setInterval(function(){
+        //获取系统时间。
+        
+        // var now = new Date();
+        var now = nowDate
+        var y = now.getFullYear(),
+            month = now.getMonth() + 1,
+            d = now.getDate(),
+            h = now.getHours(),
+            minutes = now.getMinutes(),
+            s = now.getSeconds();
+        month = month >= 10 ? month : '0' + month;
+        d = d >= 10 ? d : '0' + d;
+        h = h >= 10 ? h : '0' + h;
+        minutes = minutes >= 10 ? minutes : '0' + minutes;
+        s = s >= 10 ? s : '0' + s;
+        //将时间显示到ID为time的位置，时间格式形如：19:18:02
+        $("#sys_time").html(y + '-' + month + '-' + d + '  ' + h + ':' + minutes + ':' + s);
+        // 敲重点！！！
+        nowDate = new Date(y,now.getMonth(),d,h,minutes,s+1)
+    },1000)
+```

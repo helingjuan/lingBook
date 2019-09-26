@@ -14,6 +14,24 @@ notebook: 前端
 ```
 $("#class_id").select2() 
 ```
+因为样式问题，我会给它覆盖这些css，
+这又分两种情况，表单还是表格的筛选。
+```
+// 表格的筛选，要这些全部
+.select2-container {
+  margin-bottom: 10px;
+}
+// 表单 只要这以下的
+.select2-container .select2-selection--single {
+  height: 34px;
+}
+.select2-container--default .select2-selection--single {
+  border: 1px solid #e5e5e5;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+  line-height: 34px;
+}
+```
 ### 多选的select盒子
 select2也支持多选，只要在select标签上加`multiple="multiple"`这个属性就可以了。
 效果：  
