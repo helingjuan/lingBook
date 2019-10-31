@@ -82,6 +82,19 @@ git branch -r
 git remote -v
 // git remote ,查看当前配置有哪些远程仓库
 ```
+### 六.拉取远程另外一个仓库的代码 remote
+```
+// 建一个指针，指向远程的另外一个仓库
+git remote add 指针名 仓库地址
+// 然后查看本地的链接
+git remote 
+// 然后使用那个指针进行拉取
+git pull 指针名 分支名
+
+```
+举例：  
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20191016171804.png)
+
 
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/.1532342578342.png)
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/.1532342570031.png)

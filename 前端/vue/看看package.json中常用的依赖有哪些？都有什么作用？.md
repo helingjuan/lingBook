@@ -1,0 +1,79 @@
+---
+title: 看看package.json中常用的依赖有哪些？都有什么作用？
+tags: vue
+notebook: vue 
+---
+# 看看package.json中常用的依赖有哪些？都有什么作用？
+
+### 专业版的配置
+```
+// 完整的package.json
+{
+  "name": "vue-typescript-admin-template",
+  "version": "0.1.0",
+  "private": true,
+  "author": "YS",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "svg": "vsvg -s ./src/icons/svg -t ./src/icons/components --ext ts --es6",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "area-data": "^5.0.6",
+    "axios": "^0.19.0",
+    "element-ui": "^2.10.1",
+    "js-cookie": "^2.2.0",
+    "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
+    "path-to-regexp": "^3.0.0",
+    "qs": "^6.7.0",
+    "register-service-worker": "^1.6.2",
+    "vue": "^2.6.10",
+    "vue-area-linkage": "^5.1.0",
+    "vue-class-component": "^7.1.0",
+    "vue-property-decorator": "^8.2.1",
+    "vue-router": "^3.1.3",
+    "vue-svgicon": "^3.2.6",
+    "vuex": "^3.1.1",
+    "vuex-class": "^0.3.2",
+    "vuex-module-decorators": "^0.9.9"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "@types/js-cookie": "^2.2.2",
+    "@types/nprogress": "^0.2.0",
+    "@types/qs": "^6.5.3",
+    "@types/webpack-env": "^1.14.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "@vue/cli-plugin-babel": "^3.9.2",
+    "@vue/cli-plugin-e2e-cypress": "^3.9.0",
+    "@vue/cli-plugin-eslint": "^3.9.2",
+    "@vue/cli-plugin-pwa": "^3.9.0",
+    "@vue/cli-plugin-typescript": "^3.9.0",
+    "@vue/cli-plugin-unit-jest": "^3.9.0",
+    "@vue/cli-service": "^3.9.2",
+    "@vue/eslint-config-standard": "^4.0.0",
+    "@vue/eslint-config-typescript": "^4.0.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1",
+    "eslint-plugin-vue": "^5.2.3",
+    "fibers": "^4.0.1",
+    "jest": "^24.8.0",
+    "sass": "^1.22.5",
+    "sass-loader": "^7.1.0",
+    "style-resources-loader": "^1.2.1",
+    "ts-jest": "^24.0.2",
+    "typescript": "3.5.3",
+    "vue-cli-plugin-element": "^1.0.1",
+    "vue-cli-plugin-style-resources-loader": "^0.1.3",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.35.3"
+  }
+}
+
+```
