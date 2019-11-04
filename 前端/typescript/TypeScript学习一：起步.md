@@ -5,7 +5,9 @@ notebook: 前端
 ---
 # TypeScript学习一：起步
 ### 一.基基基础内容
-typescript是javascript的超集，可以编译成纯JavaScript,可以在任何浏览器，任何计算机和任何操作系统上运行。且，这是一个开源项目。
+typescript是javascript的超集，可以编译成纯JavaScript,可以在任何浏览器，任何计算机和任何操作系统上运行。且，这是一个开源项目。  
+TypeScript兼容JavaScript，可以载入JavaScript代码然后运行。TypeScript与JavaScript相比，进步的地方包括：加入注释，让编译器理解所支持的对象和函数，编译器会移除注释，不会增加开销；
+增加一个完整的类结构，使之成为一个全新的面向对象语言。
 #### 1.1 安装
 ```
 npm install -g typescript

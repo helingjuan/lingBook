@@ -78,12 +78,154 @@ let arrayStrTemp: Array<string> = ['a', 'r', 'r']
 ```
 
 ### 5.对象 `Object`
+表示非原始类型，就是除了number，string，boolean，symbol，null 和undefined之外的类型。
+举个例子：
+```
+let student: Object = {
+  name: 'lucky', 
+  age: 18,
+  mathScore: [89, 99, 70]
+  }
+```
 ### 6.元组 `Tuple`
+元祖类型允许表示一个已知元素数量和类型的数组，各元素的类型不必相同。(本质还是数组吧)
+```
+let x: [string, number] //声明元祖类型x
+x = ['lucky', 1] // 初始化x，格式要和声明的一一对应，否则会报错
+```
+使用场景？？？具体的我也不知道
+**使用注意点：**
+- 访问一个已知索引的元素，会根据元素的类型来判断这个操作是否合理。
+  ```
+  console.log(x[0].substr(1)) 
+  console.log(x[1].substr(1))
+  ```
+- 访问一个越界的元素，会使用联合类型(被声明的类型中的任意一个)替代
+  ```
+  x[3] = 'world'; // OK, 字符串可以赋值给(string | number)类型
+  console.log(x[5].toString()); // OK, 'string' 和 'number' 都有 toString
+  x[6] = true; // Error, 布尔不是(string | number)类型
+  ```
 ### 7.枚举 `enum`
+这是对JavaScript标准数据类型的一个补充。枚举类型适合声明固定值的变量(常量)，比如PI=3.1415926 
+当一个变量有几种可能的取值时，就可以将它定义为枚举类型。
+```
+enum Color {Red, Green, Blue} // 默认情况下，从0开始为元素编号，就是Color.red == 0; Color.Green == 1
+let c: Color = Color.Green // 变量c是Color类型，值等于 Color.Green
+```
+这里有3种声明方式：
+```
+// 方法1：默认，从0开始为元素编号，就是Color.red == 0; Color.Green == 1
+enum Color {Red, Green, Blue}
+// 方法2：给定一个起始值，就是Color.red == 1; Color.Green == 2
+enum Color {Red = 1, Green, Blue} 
+// 方法3：全部手动赋值，就是Color.red == 2; Color.Green == 4
+enum Color {Red = 2, Green = 4, Blue = 6} 
+```
+**注意：枚举的便利点**就是：可以由枚举的值得到这个枚举常量名。
+```
+enum Color {Red = 1, Green, Blue}
+let colorName: string = Color[2] // colorName == 'Green'
+```
 ### 8.任意 `any`
+表示任意类型，适用于不清楚类型的一个变量。用any声明，类型检查器就不对这些值进行检查，直接通过编译阶段的检查。
+**any类型允许你在编译是可选择地包含/移除类型检查。**这个和Object还是有点不一样的。Object类型的变量只是允许你给它赋任意值，但是不能够在它上面调用任意方法，即便它真的有这些方法。
+举个例子：
+```
+let notSure: any = 4;
+notSure.ifItExists(); // okay, ifItExists might exist at runtime
+notSure.toFixed(); // okay, toFixed exists (but the compiler doesn't check)
+
+let prettySure: Object = 4;
+prettySure.toFixed(); // Error: Property 'toFixed' doesn't exist on type 'Object'.
+```
 ### 9.void
-### 10.null
-### 11.undefined
-### 12.never
-### 13.类型断言
+表示没有任何类型。与any类型恰恰相反。   
+一般void都是用来**声明没有返回值的函数**的。
+```
+function getUserName(): void {
+  alert('我没有返回值')
+}
+```
+### 10.null和undefined
+他们两都是**所有类型的子类型**，可以把赋值给任意类型。
+一般来说，一个变量只声明没赋值，那么它的值就是undefined
+注意一点：**在指定`--strictNullChecks`标记后，null和undefined只能赋值给void和它们各自**，这样就可以避免很多常见问题。
+
+### 11.never
+表示永不存在的值的类型。never类型也是任何类型的子类型，可以赋值给任意类型，但是！**never没有子类型**，就是任何类型都不能赋值给never(除了它自己本身之外)
+使用场景：
+- 适用于那些总是会抛出异常或根本就不会有返回值的函数表达式或箭头函数表达式的返回值类型；
+- 表示被永不为真的类型保护所约束的变量
+
+举个例子：
+```
+// 情景1：出现死循环
+function error(message: string): never {
+  throw new Error(message)
+}
+// 情景2：也是出现死循环
+function fail() {
+  return error('任务失败！')
+}
+```
+### 12.类型断言
+适用于你确切知道这个变量的返回类型，就是手动指定一个值的变量。然后通过类型断言的方式告诉编译器。这样就不会进行特殊的数据检查和结构。这个是只在编译阶段起作用的。
+有2种形式,效果一样(但是如果在TypeScript里使用**JSX**时，只有as语法可以使用)
+```
+// 方法1：尖括号语法
+let someValue: any = '这是个字符串'
+let strLength: number = (<string>someValue).length; //??? 有加这个尖括号的必要吗？？？难道会有强制类型转换？
+
+// 方法2：as语法
+let someValue: any = '这也是个字符串'
+let strLength: number = (someValue as string).length
+```
+使用场景：
+这个常常和**联合类型**配合使用
+举个例子：
+```
+// level 1. 只使用联合类型
+function getValue(score: string | number) {
+  console.log(score.length) // 报错！因为number类型是没有length属性的
+}
+```
+但是有时候，我们还就是不确定这个变量到底是哪个类型,那我们就得判断了
+```
+// level 2. 改造
+function getValue(score: string | number) {
+  if(score.length) { // 如果报错 就是 score.length == false
+    console.log(score.length) // number类型
+  } else {
+    console.log(score.toString().length) // 字符串类型
+  }
+}
+```
+这时候，其实还有更方便的方法，来看！
+```
+// level 3. 类型断言,把score断言成number类型
+// 这个是我认为的方法，已经不需要判断了啊。。。（还未测试过）
+function getValue(score: string | number) {
+    console.log((<number>score).length) 
+}
+// 这是网上的案例，我不懂为什么还要加这一层判断
+function getValue(score: string | number) :number {
+    if ((<string>score).length {
+        return (<string>score).length
+    }else{
+        return score.toString().length;
+}
+}
+```
+**注意：类型断言不是类型转换，断言成一个联合类型中不存在的类是不可以的**
+举个例子：
+```
+function toBoolean(something: string | number): boolean {
+    return <boolean>something;// string只有string 和number类型
+}
+
+// index.ts(2,10): error TS2352: Type 'string | number' cannot be converted to type 'boolean'.
+//   Type 'number' is not comparable to type 'boolean'.
+```
+
 
