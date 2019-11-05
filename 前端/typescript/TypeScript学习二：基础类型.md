@@ -3,7 +3,28 @@ title: TypeScript学习二：基础类型
 tags: typescript
 notebook: 前端
 ---
+[]
 # TypeScript学习二：基础类型
+目录：
+- [TypeScript学习二：基础类型](#typescript%E5%AD%A6%E4%B9%A0%E4%BA%8C%EF%BC%9A%E5%9F%BA%E7%A1%80%E7%B1%BB%E5%9E%8B)
+    - [*.变量声明 `let`](#%E5%8F%98%E9%87%8F%E5%A3%B0%E6%98%8E-let)
+    - [1.布尔值 `boolean`](#1%E5%B8%83%E5%B0%94%E5%80%BC-boolean)
+    - [2.数字 `number`](#2%E6%95%B0%E5%AD%97-number)
+    - [3.字符串 `string`](#3%E5%AD%97%E7%AC%A6%E4%B8%B2-string)
+    - [4.数组 `Array`](#4%E6%95%B0%E7%BB%84-array)
+      - [4.1 直接在元素类型后面加[]](#41-%E7%9B%B4%E6%8E%A5%E5%9C%A8%E5%85%83%E7%B4%A0%E7%B1%BB%E5%9E%8B%E5%90%8E%E9%9D%A2%E5%8A%A0)
+      - [4.2 使用数组泛型声明 Array<元素类型>](#42-%E4%BD%BF%E7%94%A8%E6%95%B0%E7%BB%84%E6%B3%9B%E5%9E%8B%E5%A3%B0%E6%98%8E-array%E5%85%83%E7%B4%A0%E7%B1%BB%E5%9E%8B)
+    - [5.对象 `Object`](#5%E5%AF%B9%E8%B1%A1-object)
+    - [6.元组 `Tuple`](#6%E5%85%83%E7%BB%84-tuple)
+    - [7.枚举 `enum`](#7%E6%9E%9A%E4%B8%BE-enum)
+    - [8.任意 `any`](#8%E4%BB%BB%E6%84%8F-any)
+    - [9.void](#9void)
+    - [10.null和undefined](#10null%E5%92%8Cundefined)
+    - [11.never](#11never)
+    - [12.类型断言](#12%E7%B1%BB%E5%9E%8B%E6%96%AD%E8%A8%80)
+    - [参考资料](#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99)
+
+
 typescript支持与JavaScript几乎相同的数据类型。大概有这几种：  
 - 布尔值 `boolean`
 - 数字 `number`
@@ -170,7 +191,8 @@ function fail() {
 }
 ```
 ### 12.类型断言
-适用于你确切知道这个变量的返回类型，就是手动指定一个值的变量。然后通过类型断言的方式告诉编译器。这样就不会进行特殊的数据检查和结构。这个是只在编译阶段起作用的。
+适用于你确切知道这个变量的返回类型，就是手动指定一个值的变量。然后通过类型断言的方式告诉编译器。这样就不会进行特殊的数据检查和结构。
+注意！！！**这个是只在编译阶段起作用的**。而强制类型转换是在编译和运行都起作用的。
 有2种形式,效果一样(但是如果在TypeScript里使用**JSX**时，只有as语法可以使用)
 ```
 // 方法1：尖括号语法
@@ -204,11 +226,13 @@ function getValue(score: string | number) {
 这时候，其实还有更方便的方法，来看！
 ```
 // level 3. 类型断言,把score断言成number类型
-// 这个是我认为的方法，已经不需要判断了啊。。。（还未测试过）
+// 错误例子：这个是我认为的方法，已经不需要判断了啊。。。（还未测试过）
 function getValue(score: string | number) {
     console.log((<number>score).length) 
 }
-// 这是网上的案例，我不懂为什么还要加这一层判断
+敲重点！！！这就是易错点，也就是我上面提醒过的。类型断言在运行时不起作用，所以并不能和强制类型转换等同。
+所以如果去掉判断的话，就会出现，编译时正常，但是运行报错的情况
+// 正确例子：这是网上的案例
 function getValue(score: string | number) :number {
     if ((<string>score).length {
         return (<string>score).length
@@ -227,5 +251,11 @@ function toBoolean(something: string | number): boolean {
 // index.ts(2,10): error TS2352: Type 'string | number' cannot be converted to type 'boolean'.
 //   Type 'number' is not comparable to type 'boolean'.
 ```
+
+### 参考资料
+- [TypeScript官方文档](https://www.tslang.cn/docs/handbook/typescript-in-5-minutes.html)
+- [TypeScript英文文档](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md)
+
+
 
 

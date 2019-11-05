@@ -3,7 +3,16 @@ title: TypeScript学习一：起步
 tags: typescript
 notebook: 前端
 ---
-# TypeScript学习一：起步
+# TypeScript学习一：起步 
+目录：
+- [TypeScript学习一：起步](#typescript%E5%AD%A6%E4%B9%A0%E4%B8%80%EF%BC%9A%E8%B5%B7%E6%AD%A5)
+    - [一.基基基础内容](#%E4%B8%80%E5%9F%BA%E5%9F%BA%E5%9F%BA%E7%A1%80%E5%86%85%E5%AE%B9)
+      - [1.1 安装](#11-%E5%AE%89%E8%A3%85)
+      - [1.2 文件拓展名 .ts](#12-%E6%96%87%E4%BB%B6%E6%8B%93%E5%B1%95%E5%90%8D-ts)
+      - [1.3 类型注解](#13-%E7%B1%BB%E5%9E%8B%E6%B3%A8%E8%A7%A3)
+      - [1.4 接口](#14-%E6%8E%A5%E5%8F%A3)
+      - [1.5 类](#15-%E7%B1%BB)
+    - [参考资料](#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99)
 ### 一.基基基础内容
 typescript是javascript的超集，可以编译成纯JavaScript,可以在任何浏览器，任何计算机和任何操作系统上运行。且，这是一个开源项目。  
 TypeScript兼容JavaScript，可以载入JavaScript代码然后运行。TypeScript与JavaScript相比，进步的地方包括：加入注释，让编译器理解所支持的对象和函数，编译器会移除注释，不会增加开销；
