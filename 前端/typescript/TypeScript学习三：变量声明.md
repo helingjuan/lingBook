@@ -36,7 +36,7 @@ function f() {
 var number = f(); // f() return add()函数，所以number 是个函数，== add()
 number()  // 调用add()函数 return b = 11
 ```
-效果：![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20191105162222.png) 
+效果：![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20191105162222.png)   
 这里就是一个知识点：**var声明的变量，在函数内部定义了，那么在其他函数内部也可以访问相同的变量**
 上面的例子就是，a 是f函数里声明的变量，b是add函数里声明的变量。add函数可以获取到f函数的a变量。即使当add在f已经执行完毕后才被调用，它仍然可以访问及修改a变量(这句话我就不怎么理解了。。。总觉得没什么必要)
 
@@ -51,8 +51,8 @@ function work(isWord: boolean) {
 work(true); // return x = 10
 work(false); // 变量x未声明，所以return x其实是做了2步，声明x和return x，因为x只声明没赋值，所以x是undefined
 ```
-这里其实能很明显看出var 的作用域了，用多了var 一看，就觉得理所当然可以访问到x变量，没什么可犹豫的。但是其实，这个就和其他语言的变量作用域有很大的区别。
-**其他语言：大多数是块作用域**，就比如这个x，在if里声明了，那么就只有if-else这个判断里能获取到x，return x 就是undefined了；
+这里其实能很明显看出var 的作用域了，用多了var 一看，就觉得理所当然可以访问到x变量，没什么可犹豫的。但是其实，这个就和其他语言的变量作用域有很大的区别。  
+**其他语言：大多数是块作用域**，就比如这个x，在if里声明了，那么就只有if-else这个判断里能获取到x，return x 就是undefined了；  
 **在javascript里：函数作用域**，在函数里任意一个地方声明的变量，在整个函数作用域内都可以获取到，所以return 10
 ### 缺点
 但是！！！！有个问题，这个**作用域范围太大了！！而且还不校验变量的唯一性**（就是可以多次声明同一个变量。。。）
@@ -135,7 +135,7 @@ for(var i = 0; i< 10; i++) {
 ## let 声明
 let与var 的写法一致，主要区别在语义和作用域范围上。
 ### 作用域：块作用域
-它的作用域是词法作用域或块作用域。只能在包含它们的块或for循环内访问。
+它的作用域是词法作用域或块作用域。**只能在包含它们的块或for循环内访问**。
 举个例子：  
 ```
 function add(input: boolean) {
@@ -148,8 +148,167 @@ function add(input: boolean) {
 }
 ```
 从这里可以很明显的看出来a和b的作用域范围：a是add函数内，b是if语句块里。
+除此之外，let还有一个特点：**不能在被声明之前读或写**。虽然这些变量始终存在于他们的作用域里，但是在直到声明它的代码之前，之前的区域都属于**暂时性死区**。
+还有一个要注意：**我们可以在一个拥有块作用域变量被声明前获取它，只是不能在变量声明前去调用这个函数。**
+举个例子：  
+```
+function foo() {
+  return a // a 在函数foo里未定义
+}
+foo() // 调用函数foo，此时会报错，因为a未定义
+let a // 声明变量a
+```
+### 重定义及屏蔽
+上面var声明提到，var声明如果重名的话，是不会报错的，且指向同一个作用域，就是只会得到一个值。但是到let这里就不一样了。**let变量在一个作用域里的声明是唯一**，就是不能出现重名的变量，否则会报错的。
+举个例子： 
+```
+let name = "lucky"
+let name = "lucy" // 报错，name变量已经声明过了
+```
+此外，在一个嵌套作用域里引入一个新名字的行为叫做**屏蔽**。！注意：这个有可能会不小心地引入新问题,同时也可能会解决一些错误。
+举个例子：
+```
+function sumMatrix(matrix: number[][]) {
+    let sum = 0;
+    for (let i = 0; i < matrix.length; i++) {
+        var currentRow = matrix[i];
+        for (let i = 0; i < currentRow.length; i++) {
+            sum += currentRow[i];
+        }
+    }
+
+    return sum;
+}
+// 这个就可以正确的输出，因为内层循环的i可以屏蔽掉外层循环的i
+```
+即使如此，还是**不建议使用屏蔽**，容易混乱。
+### 块级作用域变量的获取
+先看看函数作用域的var的变量是怎样的吧，
+简单的说，每次进入一个作用域时，var 声明变量，创建一个变量的环境，然后获取变量，但是当作用域内的代码执行完毕后，这个变量和变量环境依然存在。
+上面说到同步任务(for循环)和异步任务(setTimeout)在一起使用的问题，需要使用立即执行的函数表达式来获取每次for循环里的状态，而这个的本质就是**为获取到的变量创建一个新的变量环境**
+而let声明在循环体力就拥有完全不同的情况。它不仅仅是在循环里引入了一个新的变量环境，而是**针对每次循环**都会创建这样一个新作用域。所以let声明就可以解决var的痛点。
+举个例子：  
+```
+for(let i = 0; i < 10; i++) { // 注意！是let声明
+  setTimeout(function(){
+    console.log(i)
+  }, 100 * i)
+}
+//结果： 0 1 2 3 4 5 6 7 8 9
+```
+
+## const声明 
+const声明是声明变量的另一种方式，他是let的升级版，**拥有和let相同的作用域规则，但是不能对它们重新赋值**。但是如果你是对象类型的话，其实是可以修改的。
+举个例子：  
+```
+const numLivesForCat = 9;
+const kitty = {
+    name: "Aurora",
+    numLives: numLivesForCat,
+}
+
+// Error
+kitty = {
+    name: "Danielle",
+    numLives: numLivesForCat
+};
+
+// all "okay"
+kitty.name = "Rory";
+kitty.name = "Kitty";
+kitty.name = "Cat";
+kitty.numLives--;
+```
+这时候就需要用特殊的方式去避免，**TypeScript允许将对象的成功设置成只读的**。
+
+## 解构
+解构就是可以把数组拆解出来声明成一个个变量，可以把对象的属性拆解出来声明成一个个变量。
+### 1. 解构数组
+最简单的解构。
+举个例子：
+```
+let input = [1, 2]
+let [first, second] = input;
+console.log(first) // 输出 1
+console.log(second) // 输出 2
+这样就相当于创建了2个变量：first和second
+等同于：
+let first = input[0] = 1
+let second = input[1] = 2
+```
+**解构作用域已声明的变量会更好**很方便操作数据
+举个例子：（互换）
+```
+[first, second] = [second, first]
+就相当于，把[1,2] 的数组变成 [2, 1]了
+```
+作用于函数参数，举个例子：
+```
+function f([first, second]: [number, number]) {
+    console.log(first);
+    console.log(second);
+}
+f(input);
+```
+在数组里使用`...`语法，创建剩余变量,举个例子：
+```
+let [first, ...rest] = [1, 2, 3, 4];
+console.log(first); // outputs 1
+console.log(rest); // outputs [ 2, 3, 4 ]
+```
+
+### 2.对象解构
+什么叫对象解构？举个例子
+```
+let obj = {
+  name: 'lucky',
+  age: 18,
+  height: 168
+}
+let {name, age} = obj
+这个就相当于通过obj.name 和obj.age 创建了 name和age，如果不需要c就可以忽略它
+```
+....这个。。。 我后面的暂时没看懂（需要的自行看文档吧）
+———————————————这是个需要补缺补漏的提醒———————————————————
+
+最后最后，谨慎使用解构，一不小心会把自己绕进去的:joy:
+
+## 展开
+展开与解构正相反，它允许你将一个数组展开为另一个数组，将一个对象展开为另一个对象。
+### 1. 展开数组
+举个例子
+```
+let first = [1, 2];
+let second = [3, 4];
+let bothPlus = [0, ...first, ...second, 5];  
+这就相当于bothPlus == [0, 1, 2, 3, 4, 5]
+```
+展开操作创建了first和second的一份浅拷贝，它们两不会被展开的操作所影响。
+### 2. 展开对象
+```
+let defaults = { food: "spicy", price: "$$", ambiance: "noisy" };
+let search = { ...defaults, food: "rich" };
+这就相当于
+search = {
+  food: 'rich', // rich 覆盖 spicy
+  price: '$$',
+  ambiance: 'noisy'
+}
+```
+可以看出来，对象的展开比数组的复杂，**展开对象后面的属性会覆盖前面的属性**
+假如search == {food:"rich", ...defaults}
+结果就是：
+```
+search = {
+  food: 'spicy', // spicy覆盖rich
+  price: '$$',
+  ambiance: 'noisy'
+}
+```
 
 
+——————————————————END——————————————————————————
+—————————————终于结束了的分隔符——————————————————
 ## 参考资料
 - [TypeScript官方文档](https://www.tslang.cn/docs/handbook/variable-declarations.html)
 - [TypeScript英文文档](https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md)
