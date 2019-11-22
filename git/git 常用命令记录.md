@@ -76,7 +76,16 @@ git branch
 //查看远程分支
 git branch -r
 ```
+#### 4.4 删除本地分支
+```
+//删除本地分支
+git branch -D 分支名
 
+```
+#### 4.5 删除远程分支
+```
+git push origin --delete 分支名
+```
 ### 五.查看本地项目对应的远程仓库地址 remote
 ```
 git remote -v
