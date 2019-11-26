@@ -4,6 +4,11 @@ tags:
 notebook: 
 ---
 # npm-快速操作指南
+## 1. 版本管理
+### 安装最新版 latest
+```
+npm install npm@latest -g
+```
 ### 安装指定版本@，比如jquery
 ```
 npm install jquery@2.2.4 --save
