@@ -77,7 +77,7 @@ var player = videojs('my-player', options, function onPlayerReady() {
 ## 2. vue-video-player介绍
 这是基于`video.js`的一个vue播放的插件，所以`video.js`所支持的视频格式或者协议，`vue-video-player`也都支持。
 
-
+### 2.1 使用介绍
 ## 参考资料
 - [vue-video-player(npm 文档)](https://www.npmjs.com/package/vue-video-player)
 - [Video.js(Video.js官网)](https://videojs.com/city)
