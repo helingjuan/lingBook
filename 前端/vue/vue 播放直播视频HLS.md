@@ -76,8 +76,142 @@ var player = videojs('my-player', options, function onPlayerReady() {
 ```
 ## 2. vue-video-player介绍
 这是基于`video.js`的一个vue播放的插件，所以`video.js`所支持的视频格式或者协议，`vue-video-player`也都支持。
+```
+npm install vue-video-player --save
+```
+### 2.1 引用方式
+#### 全局引用
+在main.js中引入
+```
+import Vue from 'vue'
+import VideoPlayer from 'vue-video-player'
+// 加载video.js的样式
+import 'video.js/dist/video-js.css'
+// 引用
+Vue.use(VideoPlayer)
+```
+#### 局部引用
+```
+import videoPlayer from 'vue-video-player'
+import 'video.js/dist/video-js.css'
+export defult {
+  components: {
+    videoPlayer
+  }
+}
+```
+### 2.2 使用介绍
+这个才是最重要的地方！
+这里只介绍SPA的使用方式，SSR的请去官网查看噢。
+#### 2.2.1 方法1 videoPlayer
+如果要使用HLS协议的视频的话，要多安装一个插件`videojs-contrib-hls`，不用的话，就不用安装
+```
+npm install videojs-contrib-hls --save
+```
+```
+// ！注意：ref这个属性就相当于id，是必要的属性，因为vue是组件化思想，所以渲染时是根据ref来找到videojs实例的
+<template>
 
-### 2.1 使用介绍
+  <div class="bg-303133">
+      <video-player  class="video-player vjs-custom-skin" id="myVideo" ref="videoPlayer" 
+        :playsinline="playsinline" :options="playerOptions" @play="onPlayerPlay($event)">
+      </video-player>
+  </div>
+</template>
+
+import videoPlayer from 'vue-video-player'
+import hls from 'videojs-contrib-hls' // 引入hls
+import '../../../node_modules/video.js/dist/video-js.css'
+import '../../../node_modules/vue-video-player/src/custom-theme.css'
+
+export default {
+    components: {
+        videoPlayer
+    },
+    data (){
+      return {
+        liveAddress: '', // 直播地址
+        playerOptions: {} // 播放器配置文件
+      }
+    },
+    methods: {
+        onLive(onM3u8,onCover){
+			      var that = this
+            that.playerOptions =  {
+                notSupportedMessage: "此视频暂无法播放，请稍后再试", //允许覆盖Video.js无法播放媒体源时显示的默认信息。
+                autoplay: true, //如果true,浏览器准备好时开始回放。
+                loop: false, // 导致视频一结束就重新开始。
+                // preload: 'auto', // 建议浏览器在<video>加载元素后是否应该开始下载视频数据。auto浏览器选择最佳行为,立即开始加载视频（如果浏览器支持）
+                language: 'zh-CN',
+                aspectRatio:"16:9", // 将播放器置于流畅模式，并在计算播放器的动态大小时使用该值。值应该代表一个比例 - 用冒号分隔的两个数字（例如"16:9"或"4:3"）
+                fluid: false, // 当true时，Video.js player将拥有流体大小。换句话说，它将按比例缩放以适应其容器。
+                sources: [{
+                    type: "application/x-mpegURL", //如果是直播的话  此处务必这样配置，这个就是HLS视频格式的
+                    src: onM3u8,//视频url地址
+                }],
+                poster: onCover, //你的封面地址
+                width: document.documentElement.clientWidth,
+                control: { //此处的设置都未生效，不知道为啥，我用爆破的方式解决的
+                    timeDivider: true,
+                    durationDisplay: true,
+                    remainingTimeDisplay: false,
+                    fullscreenToggle: true //全屏按钮
+                }
+                
+            }
+         },
+         onPlayerPlay(player) {
+           console.log('点了全屏')
+          //全屏播放
+          if (!player.isFullscreen()) {
+            player.requestFullscreen();
+            player.isFullscreen(true);
+          } else {
+            player.exitFullscreen();
+            player.isFullscreen(false);
+          }
+        },
+    },
+    computed: {
+      player() {
+        return this.$refs.videoPlayer.player
+      },
+      playsinline() { //判断playsinline，在android 中为false，在ios中为true
+        var ua = navigator.userAgent.toLocaleLowerCase();
+        //x5内核
+        if (ua.match(/tencenttraveler/) != null || ua.match(/qqbrowse/) != null) {
+          return false
+        }else{
+          //ios端
+          return true				
+        }
+      }
+    },
+    mounted() {
+      this.$nextTick(() => {
+        this.onLive(live_address) // 初始化视频，live_address 视频地址
+      });
+    }
+  }
+```
+关于playerOptions中的source 是用来设置视频格式和视频地址的。
+这里重点介绍下视频格式的配置
+```
+举例：
+sources: [{
+    type: "application/x-mpegURL", //如果是直播的话  此处务必这样配置，这个就是HLS视频格式的
+    src: onM3u8,//视频url地址
+}],
+
+```
+说明：
+- type: "video/mp4", 这就是mp4的格式，MPEG 4文件使用 H264 视频编解码器和AAC音频编解码器
+- type: 'video/webm'  WebM 文件使用 VP8 视频编解码器和 Vorbis 音频编解码器
+- type: 'video/ogg' Ogg 文件使用 Theora 视频编解码器和 Vorbis音频编解码器
+- type: "application/x-mpegURL"  就是流媒体格式,比如HLS
+
+注意：前面3种格式（mp4，webm， ogg）都是video标签原生就支持的视频格式
+
 ## 参考资料
 - [vue-video-player(npm 文档)](https://www.npmjs.com/package/vue-video-player)
 - [Video.js(Video.js官网)](https://videojs.com/city)
