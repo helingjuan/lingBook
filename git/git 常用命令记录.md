@@ -91,6 +91,14 @@ git push origin --delete 分支名
 git remote -v
 // git remote ,查看当前配置有哪些远程仓库
 ```
+#### 5.1 添加远程仓库地址 add
+```
+git remote add 指针名 仓库地址
+```
+#### 5.2 删除远程仓库地址 remove
+```
+git remote remove 远程地址
+```
 ### 六.拉取远程另外一个仓库的代码 remote
 ```
 // 建一个指针，指向远程的另外一个仓库

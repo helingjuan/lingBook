@@ -4,10 +4,11 @@ tags:
 notebook: 前端
 ---
 # js-监听键盘事件
-点击一个键盘的事件流程：**keydown -> keypress -> keyup**
+点击一个键盘的事件流程：**keydown -> keypress -> keyup**  
+看个代码：
 ```
 //键盘操作 
-// keyup 
+// 同时监听keyup和paste事件 
 $("#" + that.options.searchBox).on('keyup paste',function (event) {
     //处理键盘操作
     var myEvent = event || window.event;
@@ -32,5 +33,29 @@ $("#" + that.options.searchBox).on('keyup paste',function (event) {
         }, 300);
     }
 });
+```
+
+### 监听keydown事件
+```
+// 方法1
+$("#id").keydown(function(event) {
+
+})
+// 方法2
+$("#id").on('keydown', function(event) {
+
+})
+```
+
+### 监听keyup事件
+```
+// 方法1
+$("#id").keyup(function(event) {
+
+})
+// 方法2
+$("#id").on('keyup', function(event) {
+
+})
 ```
 
