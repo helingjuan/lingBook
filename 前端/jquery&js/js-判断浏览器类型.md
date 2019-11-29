@@ -104,6 +104,8 @@ var userBrowser = function() {
 ```
 效果：
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20191128175203.png)
+### 2.3 判断是否是微信内置浏览器
+如果不知道怎么在chrome浏览器模拟微信浏览器，可以看下这个[用Chrome模拟其它的浏览器，比如微信浏览器](https://github.com/heihuahe/lingBook/blob/master/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/chrome/%E7%94%A8Chrome%E6%A8%A1%E6%8B%9F%E5%85%B6%E5%AE%83%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%8C%E6%AF%94%E5%A6%82%E5%BE%AE%E4%BF%A1%E6%B5%8F%E8%A7%88%E5%99%A8.md)
 
 ## 参考资料
 - [Navigator(MDN文档)](https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator)
