@@ -107,7 +107,6 @@ var userBrowser = function() {
 
 ## 参考资料
 - [Navigator(MDN文档)](https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator)
-- [JS如何判断浏览器类型，如何模拟浏览器类型（模拟微信浏览器）(博客园——南歌子)](https://www.cnblogs.com/nangezi/p/9342619.html)
 - [javascript的navigator对象及属性userAgent(判断用户打开页面所处环境，如安卓或IOS)(CSDN——zxuanxuanz)](https://blog.csdn.net/qq_40542728/article/details/92652132)
 
 
