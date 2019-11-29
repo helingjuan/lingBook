@@ -4,8 +4,25 @@ tags: js
 notebook: 前端
 ---
 # js-判断浏览器类型
+<!-- TOC -->
+
+- [js-判断浏览器类型](#js-判断浏览器类型)
+  - [概述](#概述)
+  - [1. 浏览器类型说明](#1-浏览器类型说明)
+    - [1.1 参数说明](#11-参数说明)
+      - [1.1.1 appName值说明(:-1:不推荐使用)](#111-appname值说明-1不推荐使用)
+      - [1.1.2 userAgent值说明](#112-useragent值说明)
+  - [2. js 判断浏览器类型和版本](#2-js-判断浏览器类型和版本)
+    - [2.1 判断是移动端还是pc端，移动端的话，是安卓还是苹果](#21-判断是移动端还是pc端移动端的话是安卓还是苹果)
+    - [2.2 判断当前是pc端哪个浏览器](#22-判断当前是pc端哪个浏览器)
+    - [2.3 判断是否是微信内置浏览器](#23-判断是否是微信内置浏览器)
+    - [2.4 统一判断，既判断PC端，又判断移动端(我自己测试过的)](#24-统一判断既判断pc端又判断移动端我自己测试过的)
+  - [参考资料](#参考资料)
+
+<!-- /TOC -->
+## 概述
 这个方法有很多，有一般的，也有巧妙的。
-一般来说，是用这种方式：**通过navigator对象的appName属性或者是userAgent属性来判断浏览器类型**
+一般来说，是用这种方式：**通过navigator对象的appName属性(不推荐使用)或者是userAgent属性来判断浏览器类型**
 navigator是window对象的一个属性，指向了一个包含浏览器相关信息的对象。
 
 ## 1. 浏览器类型说明
@@ -212,8 +229,12 @@ var isWeChatBrowserMatch = function() {
     return str
   }
 ```
+大概效果：
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20191129155351.png)
+
 ## 参考资料
 - [Navigator(MDN文档)](https://developer.mozilla.org/zh-CN/docs/Web/API/Navigator)
+- [用Chrome模拟其它的浏览器，比如微信浏览器(github——heihuahe:smile:)](https://github.com/heihuahe/lingBook/blob/master/%E5%B7%A5%E5%85%B7%E6%95%99%E7%A8%8B/chrome/%E7%94%A8Chrome%E6%A8%A1%E6%8B%9F%E5%85%B6%E5%AE%83%E7%9A%84%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%8C%E6%AF%94%E5%A6%82%E5%BE%AE%E4%BF%A1%E6%B5%8F%E8%A7%88%E5%99%A8.md)
 
 
 
