@@ -4,7 +4,7 @@ tags: 组件
 notebook: 前端
 ---
 # css 气泡对话框
-做这个的前提是，你知道怎么用css实现三角形，如果还不太清楚的话看这个[](),或者直接看也可以。
+做这个的前提是，你知道怎么用css实现三角形，如果还不太清楚的话看这个[css 实现三角形、梯形、菱形等(github——heihuahe)](https://github.com/heihuahe/lingBook/blob/master/%E5%89%8D%E7%AB%AF/css/css%20%E5%AE%9E%E7%8E%B0%E4%B8%89%E8%A7%92%E5%BD%A2%E3%80%81%E6%A2%AF%E5%BD%A2%E3%80%81%E8%8F%B1%E5%BD%A2%E7%AD%89.md),或者直接看也可以。
 ## 原理分析
 其实这个就是由一个div，内嵌一个三角形，再通过绝对定位来摆造型。  
 是不是很简单！那就看代码吧
@@ -86,3 +86,6 @@ notebook: 前端
 ```
 效果：  
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20191130105011.png)
+
+## 参考资料
+- [css 实现三角形、梯形、菱形等(github——heihuahe)](https://github.com/heihuahe/lingBook/blob/master/%E5%89%8D%E7%AB%AF/css/css%20%E5%AE%9E%E7%8E%B0%E4%B8%89%E8%A7%92%E5%BD%A2%E3%80%81%E6%A2%AF%E5%BD%A2%E3%80%81%E8%8F%B1%E5%BD%A2%E7%AD%89.md)
