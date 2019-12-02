@@ -69,7 +69,22 @@ mm.selectAll = function(tag) {
 效果：    
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/checkbox-selectAll.gif)
 
-
+### 判断复选框是否被勾起了
+```
+$("#is_menu_checked_all").checked // true就是勾起了，false就是没有
+```
+```
+/**
+     * 权限全选
+     */
+    $("#is_menu_checked_all").click(function() {
+      if((this).checked) {
+        $("input[type='checkbox']").prop('checked', true)
+      } else {
+        $("input[type='checkbox']").prop('checked', false)
+      }
+    })
+```
 ### 参考资料
 - [复选框之checked属性(博客园-江峰)](https://www.cnblogs.com/jf-67/p/6613898.html)
 - [jQuery 的 attr 与 prop 的区别(github-JChehe)](https://github.com/JChehe/blog/blob/master/posts/jQuery%20%E7%9A%84%20attr%20%E4%B8%8E%20prop%20%E7%9A%84%E5%8C%BA%E5%88%AB.md)
