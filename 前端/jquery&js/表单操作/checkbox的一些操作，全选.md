@@ -81,7 +81,7 @@ $("#is_menu_checked_all").checked // true就是勾起了，false就是没有
       if((this).checked) {
         $("input[type='checkbox']").prop('checked', true)
       } else {
-        $("input[type='checkbox']").prop('checked', false)
+        $("input[typegit='checkbox']").prop('checked', false)
       }
     })
 ```
