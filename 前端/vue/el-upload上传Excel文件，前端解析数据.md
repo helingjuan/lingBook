@@ -71,14 +71,14 @@ export default class extends Vue {
 ```
 // 封装的通用方法
 import { fileData, sheetData, vueInstance } from '@/api/excelData'
-import { importExcelApi } from '@/api/common'
+import { importExcelApi } from '@/api/common' // 通用的导入api
 import { read, utils } from 'xlsx' // excel 处理插件
 
 /** 读取excel数据
  * @param file 上传文件
  * @param that vue 实例
  * @param size 上传阀值
- * @param importPath 文件上传路径
+ * @param importPath 文件上传的请求路径
  */
 export function importExcel(file: fileData, that: vueInstance, size: number, importPath: string) {
   const types = file.name.split('.')[1]
@@ -126,7 +126,7 @@ export function file2Xce(file: fileData) {
 * @param excelData 单表sheet 数据
 * @param  that vue 实例
 * @param size 上传阀值
-* @param importPath 文件上传路径
+* @param importPath 文件上传的请求路径
 */
 export function dealExcelData(excelData: Array<sheetData>, that: vueInstance, size: number, importPath: string) {
   let allSheetData: Array<string> = []
@@ -137,8 +137,8 @@ export function dealExcelData(excelData: Array<sheetData>, that: vueInstance, si
   })
   const page = 0
   const sheetLength = allSheetData.length
-  const pageSize = Math.ceil(sheetLength / size)
-  uploadExcelData(allSheetData, page, pageSize, sheetLength, that, importPath)
+  const totalPages = Math.ceil(sheetLength / size) // 总的分页次数
+  uploadExcelData(allSheetData, page, totalPages, size, that, importPath)
 }
 
 /** 上传excel数据
@@ -147,26 +147,48 @@ export function dealExcelData(excelData: Array<sheetData>, that: vueInstance, si
 * @param pageSize 根据阀值划分的分页数（上传次数）
 * @param that vue 实例
 * @param size 上传阀值
-* @param importPath 上传文件路径
+* @param importPath 上传文件的请求路径
 */
-export async function uploadExcelData(uploadData: Array<string>, page: number, pageSize:number, size: number, that: vueInstance,
-  importPath: string) {
-  const uploadDataTemp = uploadData.splice(page * size, size)
+export async function uploadExcelData(uploadData: Array<string>, page: number, totalPages:number, size: number,
+  that: vueInstance, importPath: string) {
+  const uploadDataTemp = uploadData.slice(page * size, size * (page + 1))
   const param = {
     data: JSON.stringify(uploadDataTemp)
   }
-  console.log('page=' + page + '  内容：' + uploadDataTemp)
-  const { data } = await importExcelApi(importPath, param)
-  if (data.code === 200) {
+  try {
+    const { data } = await importExcelApi(importPath, param)
     that.importStatus = 1
-    that.importResult = uploadDataTemp
-    that.percentage = ((page + 1) / pageSize) * 100
-    if (that.percentage < 100) {
-      uploadExcelData(uploadData, page + 1, pageSize, size, that, importPath)
+    that.importResult.push(data.log)
+    that.percentage = ((page + 1) / totalPages) * 100
+    if (page + 1 < totalPages) {
+      uploadExcelData(uploadData, page + 1, totalPages, size, that, importPath)
     }
-  } else {
+  } catch (error) {
     that.importStatus = 2
   }
 }
+```
+
+// 配置引入方法里的参数 文件：excelData.d.ts
+```
+import Vue from 'vue'
+
+export interface fileData extends File {
+  raw: File
+}
+export interface sheetData {
+  sheetName: string,
+  sheet: Array<string>
+}
+
+export interface vueInstance extends Vue {
+  percentage: number,
+  importResult: Array<string>,
+  importStatus: number
+}
 
 ```
+
+效果：
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20191212102521.png)
+
