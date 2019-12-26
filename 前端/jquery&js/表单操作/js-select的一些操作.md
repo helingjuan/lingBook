@@ -1,10 +1,10 @@
 ---
-title: select 的一些操作
+title: js-select 的一些操作
 tags: js
 notebook: 前端
 ---
 
-# select的一些操作
+# js-select的一些操作
 
 ### 筛选项数据由后台返回
 ```

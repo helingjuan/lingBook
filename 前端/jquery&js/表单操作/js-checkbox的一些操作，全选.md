@@ -1,14 +1,14 @@
 ---
-title: checkbox的一些操作，全选
+title: js-checkbox的一些操作，全选
 tags: js
 notebook: 前端
 ---
 
-# checkbox的一些操作，全选
+# js-checkbox的一些操作，全选
 ### 发现checkbox checked属性问题（敲重点！）
 就是在html中，**只要有checked这个属性，不管值是多少，空、true、false等，其效果都是选中的。**
-所以要操作这个，只能从js来判断。   
-举例：    
+所以要操作这个，只能从js来判断。
+举例：
 ```
 ```
 效果：
@@ -66,7 +66,7 @@ mm.selectAll = function(tag) {
     $("input[type='checkbox']").prop('checked', $(tag).prop('checked'))
   }
 ```
-效果：    
+效果：
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/checkbox-selectAll.gif)
 
 ### 判断复选框是否被勾起了
