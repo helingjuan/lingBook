@@ -1,9 +1,9 @@
 ---
-title: js toFixed() 四舍六入五成双，小数点处理 了解一下
+title: js toFixed() 小数点处理 了解一下
 tags: js
 notebook: 前端
 ---
-# js toFixed() 四舍六入五成双，小数点处理 了解一下
+# js toFixed() 小数点处理 了解一下
 ## toFixed([digits])文档介绍
 - toFixed() 用指定的数字(digits)来格式化数字，比如: tofixed(2)， 就是会有2位小数。3 就是3位小数
 - 参数：digits ，控制小数位数。2 就是2位小数，3 就是3位小数。这个数值范围在0-20之间。如果没传，则digits默认为0
