@@ -18,7 +18,7 @@ a[0] = b //这样有个问题，你要知道这个坐标，index 然后指定赋
 // 方法2
 a.push(b) // Array.push() 可以将任何数据放到数组里。且按顺序放。
 ```
-效果:    
+效果:
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190829170256.png)
 
 ### 1.2.一次性添加多个数据,push()
@@ -26,14 +26,14 @@ a.push(b) // Array.push() 可以将任何数据放到数组里。且按顺序放
 var arrayStr = ['001'];
 arrayStr.push('002', '005')
 ```
-效果：   
+效果：
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190829173443.png)
 ### 1.3.将数据添加到数组的开头（指定位置）,unshift()
 ```
 var arrayStr = ['001'];
 arrayStr.unshift('002', '005')
 ```
-效果：   
+效果：
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190829173533.png)
 
 ### 1.4.将数组A的内容添加到数组B中,数组B的值发生变化,apply()
@@ -42,11 +42,11 @@ var arrayA = ['001','002'],
     arrayB = ['010', '011'];
 arrayB.push.apply(arrayA,arrayB)
 ```
-效果：    
-![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190829173644.png)    
+效果：
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190829173644.png)
 
-**注意**：apply中参数顺序的意义是不一样的。比如，我们换个顺序   
-![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190829173748.png)    
+**注意**：apply中参数顺序的意义是不一样的。比如，我们换个顺序
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190829173748.png)
 总结：可以很明显地看出，**apply(arrayA, arrayB)就是把b的数据添加到A**，其他类比。看文档怎么介绍的：
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190829174520.png)
 ### 1.5.将数组A，数组B的内容添加到空数组C中，concat()
@@ -55,7 +55,7 @@ var arrayA = ['001','002'],
     arrayB = ['010', '011'],
     arrayC = arrayA.concat(arrayB)
 ```
-效果：   
+效果：
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190829173828.png)
 
 ## 2.数组里删除数据
@@ -71,5 +71,13 @@ removeByValue(arr, val) {
   }
 }
 ```
+
+## 3. 数组转换
+### 3.1 字符串数组转换成数字数组
+```
+var array = ['1', '2', '3']
+array.map(Number) // array = [1,2,3]
+```
+
 ### 参考资料
 - [Function.prototype.apply()(MDN文档)](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply)
