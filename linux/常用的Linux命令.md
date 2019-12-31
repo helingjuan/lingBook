@@ -10,4 +10,9 @@ notebook:
 ```
 ps -ef | grep nginx
 ```
+## 终端的操作
+### 终止终端 `Ctrl + c`
+### 清空终端（清屏）`Ctrl + l`
+
+
 
