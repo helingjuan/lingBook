@@ -58,7 +58,35 @@ var arrayA = ['001','002'],
 效果：
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190829173828.png)
 
+### 1.6 数组里存'键值对'
+
+#### 方法一：push(json对象)
+```
+// 方法一
+arr.push({
+    key: value
+})
+```
+效果：
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/.1544511983833.png)
+
+#### 方法二：[key]赋值
+```
+// 方法二
+var array = [];
+array.push('1');
+array['test'] = '2';
+array['test2'] = [1,2,3,4,5]
+console.log(array)
+```
+效果：
+- 字符串
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/.1544511902234.png)
+- 数组
+![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/.1544512124621.png)
+
 ## 2.数组里删除数据
+
 ### 2.1 删除指定数据 splice
 ```
 //删除数组中指定元素
@@ -77,6 +105,22 @@ removeByValue(arr, val) {
 ```
 var array = ['1', '2', '3']
 array.map(Number) // array = [1,2,3]
+```
+
+### 3.2 数组转换成 字符串 `join(分隔符)`
+比如：`[1,2,3] => "1,2,3"`
+代码：
+```
+var array = [1,2,3]
+var arrayStr = array.join(',') // arrayStr == "1,2,3"
+```
+
+然后 反转呢，也很简单。`split(分隔符)`
+比如： `[1,2,3] <= "1,2,3"`
+代码：
+```
+var arrayStr = "1,2,3"
+var array = arrayStr.split(',') // arrayStr == [1,2,3]
 ```
 
 ### 参考资料
