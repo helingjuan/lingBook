@@ -1,7 +1,7 @@
 ---
 title: Date对象的一些操作
-tags: 
-notebook: 
+tags:
+notebook:
 ---
 # Date对象的一些操作
 ### 计算两个日期之间的天数差
@@ -18,7 +18,7 @@ var days = (dateEnd - dateStart) / (1000 * 60 * 60 * 24));
 ```
 '20190828'.replace(/^(\d{4})(\d{2})(\d{2})$/, "$1-$2-$3"),
 ```
-效果：    
+效果：
 ![](https://raw.githubusercontent.com/heihuahe/myGallery/master/noteImage/20190828144848.png)
 
 ### 格式装换：时间戳 转换成2019/08/28
@@ -42,6 +42,10 @@ var getDate = function() {
     return yyyy + '-' + mm + '-' + dd
   }
 ```
+### 上月日期
+```
+var date=new Date(year,month,0); 就是月初的前一天，就是上月月底的那天
+```
 
 ### 时间累加，一秒秒加
 ```
@@ -56,7 +60,7 @@ var nowDate = ''
     //获取系统时间，将时间以指定格式显示到页面
     var timer = setInterval(function(){
         //获取系统时间。
-        
+
         // var now = new Date();
         var now = nowDate
         var y = now.getFullYear(),
