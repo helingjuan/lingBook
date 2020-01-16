@@ -47,6 +47,84 @@ var getDate = function() {
 var date=new Date(year,month,0); 就是月初的前一天，就是上月月底的那天
 ```
 
+### 各种日期范围的获取
+```
+/**
+   * 日期格式化 yyyy-mm-dd
+   * @param timeStamp 时间戳
+   */
+  formatByTimeStamp(timeStamp: number) {
+    const date = new Date(timeStamp)
+    return this.formatByDate(date)
+  }
+  /**
+   * 日期格式化 yyyy-mm-dd
+   * @param timeStamp 时间戳
+   * @returns yyyy-mm-dd 字符串
+   */
+  formatByDate(date: Date) {
+    const year = date.getFullYear()
+    const monthTemp = date.getMonth() + 1
+    const month = monthTemp < 10 ? '0' + monthTemp : monthTemp
+    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate()
+    return year + '-' + month + '-' + day
+  }
+  /**
+   * 获取日期范围
+   * @param dateObj 日期参数
+   */
+  getDateRange(dateObj: dateParam) {
+    const date =  new Date()
+    const dayOfWeek = date.getDay() // 本周的第几天
+    const year = date.getFullYear() // 年
+    const month = date.getMonth() // 月，从0开始--- 11 就是12月份
+    const day = date.getDate() // 当前日，本月的第几天
+    const dayTimestamp: number = 24 * 60 * 60 * 1000 // 一天的时间戳
+    let startDate = new Date()
+    let endDate = new Date()
+    switch(dateObj.dateTag) {
+      case 'today': // 今天
+        this.start_date = this.formatByDate(date)
+        this.end_date = this.start_date
+        break
+      case 'yesterday': // 昨天
+        this.start_date = this.formatByTimeStamp(date.getTime() - dayTimestamp)
+        this.end_date = this.start_date
+        break
+      case 'severalDays': { // 最近几天
+        if (dateObj.dayNum) {
+          const startDate = date.getTime() - (dateObj.dayNum - 1) * dayTimestamp
+          this.start_date = this.formatByTimeStamp(startDate)
+          this.end_date = this.formatByDate(date)
+        }
+        break
+      }
+      case 'week': // 本周
+        this.start_date = this.formatByTimeStamp(date.getTime() - (dayOfWeek - 1) * dayTimestamp)
+        this.end_date = this.formatByDate(date)
+        break
+      case 'lastWeek': {// 上周
+        const lastWeekEndDay = date.getTime() - (day - dayOfWeek - 1) * dayTimestamp // 上周结束的日期
+        this.start_date = this.formatByTimeStamp(lastWeekEndDay - 6 * dayTimestamp) // 上周开始的日期
+        this.end_date = this.formatByTimeStamp(lastWeekEndDay)
+        break
+      }
+      case 'lastMonth': {  // 上个月
+        let lastMonthStart = new Date()
+        if (month === 0) { // 如果是一月份，就跨年了
+          lastMonthStart = new Date(year - 1, 11, 1) // 上个月, 月份是从0开始的，所以11 就是12月
+        } else {
+          lastMonthStart = new Date(year, month - 1, 1)
+        }
+        this.start_date = this.formatByDate(lastMonthStart)
+        this.end_date = this.formatByDate(new Date(year, month, 0)) // 上个月月底
+        break
+      }
+    }
+
+  }
+```
+
 ### 时间累加，一秒秒加
 ```
 var nowDate = ''
