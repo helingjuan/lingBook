@@ -134,5 +134,21 @@ vue cli 3.0以上的版本的默认配置，就是包含babel 和 eslint
 
 :sparkles:tip：
 如果选错了，要返回上一步，就`ctrl+c` 退出，重新选择
+
+## 测试的配置
+```
+Vue CLI v4.2.2
+? Please pick a preset: Manually select features
+? Check the features needed for your project: Babel, TS, PWA, Router, Vuex, CSS Pre-processors, Linter
+? Use class-style component syntax? Yes
+? Use Babel alongside TypeScript (required for modern mode, auto-detected polyfills, transpiling JSX)? Yes
+? Use history mode for router? (Requires proper server setup for index fallback in production) Yes
+? Pick a CSS pre-processor (PostCSS, Autoprefixer and CSS Modules are supported by default): Sass/SCSS (with node-sass)
+? Pick a linter / formatter config: Prettier
+? Pick additional lint features: Lint on save, Lint and fix on commit
+? Where do you prefer placing config for Babel, ESLint, etc.? In package.json
+? Save this as a preset for future projects? Yes
+? Save preset as: vue-typescript-test-config
+```
 ## 参考资料
 - [vue-cli 3.0使用指南(CSDN-往后余生cp)](https://blog.csdn.net/luchuanqi67/article/details/80907107)
