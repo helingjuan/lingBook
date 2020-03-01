@@ -41,7 +41,13 @@ npm install example --save-dev
   将依赖包名称添加到package.json中dependencies中；   
 - `--save-dev` 是开发时候要依赖的东西
   将依赖包名称添加到package.json中devDependencies中；
-
+## 2.命令后面的缩写是什么意思
+### `-S` 
+添加依赖到运行环境依赖库`dependencies`中
+### `-D` 
+添加依赖到`devDependencies` 就是开发环境依赖库里
+### `-g`
+全局安装
 ### 参考资料
 - [npm 安装指定版本（按版本安装）(CSDN-雪梅零落)](https://blog.csdn.net/xuaner8786/article/details/81630445)
 
