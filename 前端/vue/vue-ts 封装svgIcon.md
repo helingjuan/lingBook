@@ -8,7 +8,8 @@
     - [1.在components下封装svgIcon组件](#1%e5%9c%a8components%e4%b8%8b%e5%b0%81%e8%a3%85svgicon%e7%bb%84%e4%bb%b6)
     - [2.在src下新建svgIcons文件夹](#2%e5%9c%a8src%e4%b8%8b%e6%96%b0%e5%bb%basvgicons%e6%96%87%e4%bb%b6%e5%a4%b9)
     - [3. 在vue.config.ts里进行svg的loader配置](#3-%e5%9c%a8vueconfigts%e9%87%8c%e8%bf%9b%e8%a1%8csvg%e7%9a%84loader%e9%85%8d%e7%bd%ae)
-    - [4. 使用](#4-%e4%bd%bf%e7%94%a8)
+    - [4. 在main.ts里引用](#4-%e5%9c%a8maints%e9%87%8c%e5%bc%95%e7%94%a8)
+    - [5. 使用](#5-%e4%bd%bf%e7%94%a8)
   - [目前存在的一个问题](#%e7%9b%ae%e5%89%8d%e5%ad%98%e5%9c%a8%e7%9a%84%e4%b8%80%e4%b8%aa%e9%97%ae%e9%a2%98)
   - [参考资料](#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99)
 
@@ -49,15 +50,15 @@ export default class SvgIcon extends Vue{
     type: String,
     required: true,
     default: ''
-  }) 
+  })
   private iconClass!: string
   @Prop({
     type: String,
     required: false,
     default: ''
-  }) 
+  })
   private className!: string
-  
+
   private get iconName() {
     return `#icon-${this.iconClass}`
   }
@@ -89,7 +90,7 @@ export default class SvgIcon extends Vue{
 ```typescript
 // 引入 svgIcons 组件并全局注册
 // 实现自动引入 @/src/svgIcons 下面所有的图标
-// require.context("./svg", false, /.svg$/); 这行代码就会去 svg文件夹（不包含子目录）下面的找所有文件名以 .svg结尾的文件能被 require 的文件。 
+// require.context("./svg", false, /.svg$/); 这行代码就会去 svg文件夹（不包含子目录）下面的找所有文件名以 .svg结尾的文件能被 require 的文件。
 // 更直白的说就是 我们可以通过正则匹配引入相应的文件模块
 // require.context 的三个参数：
 //   directory：说明需要检索的目录
@@ -128,9 +129,14 @@ module.exports = {
   }
 }
 ```
+### 4. 在main.ts里引用
+```node
+// 引入svg图标
+import './svgIcons'
+```
 大概这样就完工了
 那怎么用呢，很简单
-### 4. 使用
+### 5. 使用
 这里注意一下，因为上面我们已经全局注册了，所以这里就不需要再引入组件什么的了。可以直接用！
 ```
 <svg-icon icon-class="024"/>
