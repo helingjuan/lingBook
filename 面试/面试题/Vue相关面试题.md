@@ -12,7 +12,7 @@
       - [Proxy只会代理对象的第一层，vue3.0如何解决？](#proxy只会代理对象的第一层vue30如何解决)
       - [监听数组的时候可能触发多次get/set,那么如何防止触发多次呢？](#监听数组的时候可能触发多次getset那么如何防止触发多次呢)
     - [Proxy和Object.defineProperty的区别](#proxy和objectdefineproperty的区别)
-  - [vue2.0 组件通信有哪些方式？](#vue20-组件通信有哪些方式)
+  - [vue2.0 组件通信有哪些方式？:question:](#vue20-组件通信有哪些方式)
   - [v-if和v-show 有什么区别？](#v-if和v-show-有什么区别)
   - [computed和watch的区别和运用的场景？](#computed和watch的区别和运用的场景)
   - [组件中的data为什么是一个函数？](#组件中的data为什么是一个函数)
@@ -24,6 +24,7 @@
   - [在什么阶段才能访问操作DOM？](#在什么阶段才能访问操作dom)
   - [接口请求一般放在哪个生命周期中？](#接口请求一般放在哪个生命周期中)
   - [vue路由有几种模式？他们的实现原理分别是什么？区别在哪？](#vue路由有几种模式他们的实现原理分别是什么区别在哪)
+    - [hash和history的区别？](#hash和history的区别)
   - [路由懒加载是什么意思？如何实现路由懒加载？](#路由懒加载是什么意思如何实现路由懒加载)
   - [vue Router导航守卫有哪些？](#vue-router导航守卫有哪些)
   - [vuex是什么？](#vuex是什么)
@@ -98,7 +99,7 @@ Proxy的优点：
 Object.defineProperty的优点
 - 兼容性较好，支持IE9+，而Proxy存在浏览器兼容性问题，而且无法用polyfill磨平
 
-## vue2.0 组件通信有哪些方式？
+## vue2.0 组件通信有哪些方式？:question:
 - prop和emit
 - evenBus
 - project和inject
@@ -119,16 +120,28 @@ v-if适用于较少判断的，v-show适合频繁的切换，这样就不用重�
 2. 当需要在数据变化时执行异步/开销较大的操作时，应该使用**watch**，限制我们
 ## 组件中的data为什么是一个函数？
 ## v-model是如何实现双向数据绑定的？
+
 ## nextTick的实现原理是什么？
 ## Vue事件绑定原理是什么？
 ## 为什么不建议用index作为key？
 ## Vue中组件的生命周期调用顺序是怎么样的？
+beforeCreated,created,beforeMounted,mounted,beforeUpdate,update,beforeDestory,destory
 ## 在什么阶段才能访问操作DOM？
+created,beforeMounted,mounted,update,beforeUpdate,beforeDestory
 ## 接口请求一般放在哪个生命周期中？
+mounted，mounted可以请求结束后，可以直接挂载。
 ## vue路由有几种模式？他们的实现原理分别是什么？区别在哪？
+路由模式：hash模式和history模式
+- hash模式
+- history模式
+  url是直接斜杆的，需要后台nginx进行相应的配置。实现原理主要是通过history.pushState这个api
+
+### hash和history的区别？
+1. url地址不同，hash的带#，history不带#
+2. hash模式刷新和history刷新不一样
 ## 路由懒加载是什么意思？如何实现路由懒加载？
 ## vue Router导航守卫有哪些？
-
+全局守卫和局部路由守卫
 ## vuex是什么？
 全局状态管理，每一个vuex应用的核心就是store(仓库)。store基本上是一个容器，它包含着vue应用中的大部分状态。
 
