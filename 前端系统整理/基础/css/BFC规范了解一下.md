@@ -1,4 +1,16 @@
 # BFC规范了解一下
+<!-- TOC -->
+
+- [BFC规范了解一下](#bfc规范了解一下)
+      - [什么是BFC？](#什么是bfc)
+        - [box：css布局的基本单位](#boxcss布局的基本单位)
+        - [formatting context:一个决定如何渲染文档的容器](#formatting-context一个决定如何渲染文档的容器)
+      - [如何触发BFC？](#如何触发bfc)
+      - [BFC的作用](#bfc的作用)
+- [参考资料](#参考资料)
+
+<!-- /TOC -->
+
 BFC规范，**规定了内部的块元素如何布局**，决定了其子元素如何定位，以及和其他元素的关系和相互作用。
 #### 什么是BFC？
 先了解一下box、formatting context的概念

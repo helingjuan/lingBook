@@ -139,6 +139,7 @@ mounted，mounted可以请求结束后，可以直接挂载。
 ### hash和history的区别？
 1. url地址不同，hash的带#，history不带#
 2. hash模式刷新和history刷新不一样
+
 ## 路由懒加载是什么意思？如何实现路由懒加载？
 ## vue Router导航守卫有哪些？
 全局守卫和局部路由守卫
